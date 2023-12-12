@@ -1,8 +1,12 @@
 const ex = require("express");
-const userRoute = require("./src/routes/user.route")
-const app = ex()
+const app = ex();
 
-app.use("/", userRoute);
+const userRoute = require("./src/routes/user.route");
+const port = 3500
+
+
+app.use(ex.json());
+app.use("/user", userRoute);
 
 //ROTA - 
 //Method HTTP(CRUD)
@@ -16,4 +20,4 @@ app.use("/", userRoute);
 //Nome - um indentificador da rota
 //Function | => - Responsavel por executar algun comando
 
-app.listen(3000)
+app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
