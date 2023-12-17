@@ -7,5 +7,7 @@ const UserSchema = new mongoose.Schema({
     password: {type: String, required: true},
     avatar: {type: String, required: true},
 })
-UserSchema
-const User = mongoose.Schema("User"
+
+const User = mongoose.Schema("User", UserSchema);
+
+module.exports = User;
