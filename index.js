@@ -1,10 +1,11 @@
 const ex = require("express");
 const app = ex();
+const connectDatabase = require("./src/database/db")
 
 const userRoute = require("./src/routes/user.route");
 const port = 3500
 
-
+connectDatabase()
 app.use(ex.json());
 app.use("/user", userRoute);
 
