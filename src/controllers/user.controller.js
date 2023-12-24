@@ -41,15 +41,15 @@ const findAll = async (req, res) => {
 const findById = async (req, res) => {
     const id = req.params.id
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
+/*     if(!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({message: "ID Inválido!"});
-    }
+    } */
 
     const user = await userService.findByIdService(id)
 
-    if(!user) {
+ /*    if(!user) {
         return res.status(400).send({message: "Não há usuarios"});
-    }
+    } */
 
     res.send(user)
 };
@@ -63,15 +63,15 @@ const update = async (req, res) => {
 
     const id = req.params.id;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
+/*     if(!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({message: "ID Inválido!"});
-    }
+    } */
 
     const user = await userService.findByIdService(id)
 
-    if(!user) {
+/*     if(!user) {
         return res.status(400).send({message: "Não há usuarios"});
-    }
+    } */
 
     await userService.updateService(
         id,
