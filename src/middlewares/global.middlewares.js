@@ -14,7 +14,7 @@ const validId = (req, res, next) => {
 const validUser = async (req, res, next) => {
     const id = req.params.id;
 
-    const user = await userService.findById(id);
+    const user = await userService.findByIdService(id);
 
     if(!user) {
         return res.status(400).send({message: "Não há usuarios"});
