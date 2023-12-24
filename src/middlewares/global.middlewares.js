@@ -8,6 +8,8 @@ const validId = (req, res, next) => {
         return res.status(400).send({message: "ID Inválido!"});
     }
 
+    req.id = id,
+
     next();
 }
 
@@ -19,6 +21,9 @@ const validUser = async (req, res, next) => {
     if(!user) {
         return res.status(400).send({message: "Não há usuarios"});
     }
+
+    req.id = id;
+    req.user = user;
 
     next();
 }
