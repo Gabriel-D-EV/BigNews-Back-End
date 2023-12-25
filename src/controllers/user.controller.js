@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 
 
 const create = async (req, res) => {
-    const {name, username, email, password, avatar} = req.body;
+    try {
+        const {name, username, email, password, avatar} = req.body;
 
     if (!name || !username || !email || !password || !avatar) {
         res.status(400).send({message: " Preencha todos os campos."})
@@ -25,30 +26,40 @@ const create = async (req, res) => {
             password,
             avatar,
         }
-    })
+    });
+} catch (err) {
+    res.status(500).send({message: err.message})
+}
 };
 
 const findAll = async (req, res) => {
-    const users = await userService.findAllService();
+    try {
+        const users = await userService.findAllService();
 
     if(users.length === 0) {
         return res.status(400).send({message: "Não há usuarios cadastrados!"});
     }
     
-    res.send(users)
+    res.send(users);} catch {
+        res.status(500).send({message: err.message})
+    }
 };
 
 const findById = async (req, res) => {
-    const id = req.id
+    try {
+        const id = req.id
 
 
     const user = req.user;
 
-    res.send(user)
+    res.send(user);} catch {
+        res.status(500).send({message: err.message})
+    }
 };
 
 const update = async (req, res) => {
-    const {name, username, email, password, avatar} = req.body;
+    try {
+        const {name, username, email, password, avatar} = req.body;
 
     if (!name && !username && !email && !password && !avatar) {
         res.status(400).send({message: " Preencha algum campo para atualizar."})
@@ -67,7 +78,9 @@ const update = async (req, res) => {
         avatar
     );
 
-    res.send({message: "Usuario atualizado com sucesso!!"});
+    res.send({message: "Usuario atualizado com sucesso!!"});} catch {
+        res.status(500).send({message: err.message})
+    }
 
 };
 
