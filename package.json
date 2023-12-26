@@ -1,6 +1,7 @@
 {
   "name": "big-news",
   "version": "1.0.0",
+  "type": "module",
   "description": "API para atualidades de alguns Animes",
   "main": "index.js",
   "scripts": {

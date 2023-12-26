@@ -1,4 +1,4 @@
-const User = require("../models/User");
+import User from "../models/User.js";
 
 const createService = (body) => User.create(body)
 
@@ -15,6 +15,6 @@ const updateService = (
     avatar) => User.findOneAndUpdate({_id: id},{ name, username, email, password, avatar }
     );
 
-module.exports = {
+export default  {
     createService, findAllService, findByIdService, updateService,
 }
