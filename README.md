@@ -1,7 +1,5 @@
 # BIG NEWS - DONQUIXOTE
 
-# Geek News
-
 Geek News é um projeto de blog que traz as últimas novidades sobre o mundo geek, animes e mangá. Aqui você vai encontrar notícias, análises, curiosidades, teorias, recomendações e muito mais sobre as suas obras favoritas e as que você ainda não conhece.
 
 O nosso foco são os animes e mangás mais populares e aclamados da atualidade, como One Piece, Naruto, Dragon Ball, Jujutsu Kaisen, Black Clover e outros. Mas também vamos abordar outros gêneros e estilos, como ficção científica, fantasia, terror, comédia, romance, aventura, etc.
