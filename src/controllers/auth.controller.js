@@ -18,7 +18,7 @@ const login = async (req, res) => {
     }
 
 
-    res.send(user);
+    res.send("Login ok!");
   } catch (err) {
     res.status(500).send(err.message);
   }
