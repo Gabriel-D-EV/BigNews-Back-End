@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import authservices from "../services/auth.services.js";
 
+
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -17,8 +18,9 @@ const login = async (req, res) => {
         return res.status(400).send({ message: "Usuario ou Senha inválidos." });
     }
 
+    const token = authservices.generateToken(user._id);
 
-    res.send("Login ok!");
+    res.send({token});
   } catch (err) {
     res.status(500).send(err.message);
   }

@@ -18,7 +18,7 @@ app.use("/auth", authRoute);
 //ROTA - 
 //Method HTTP(CRUD)
 
-  //GET - prga
+  //GET - pega
   //POST - cria
   //PUT - altera full
   //PATCH - altera parte
