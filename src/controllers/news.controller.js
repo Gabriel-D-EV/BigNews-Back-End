@@ -2,22 +2,24 @@ import { createService, findAllService } from "../services/news.services.js";
 
 const create = async (req, res) => {
   try {
-    const { authorizations } = req.headers;
-    console.log(authorizations);
+    const { authorization } = req.headers;
+    console.log(authorization);
 
-    const parts = authorizations.split(" ");
+    
+    if (!authorization) {
+      return res.status(401).send({ message: "err1: Você não está autorizado!" });
+    }
+
+    const parts = authorization.split(" ");
     const [schema, token] = parts;
 
     if (parts.length !== 2){
-        return res.status(401).send({ message: "Você não está autorizado!" });
+        return res.status(401).send({ message: "err2: Você não está autorizado!" });
     }
 
-    if (!authorizations) {
-      return res.status(401).send({ message: "Você não está autorizado!" });
-    }
 
     if (schema !== "Bearer") {
-      return res.status(401).send({ message: "Você não está autorizado!" });
+      return res.status(401).send({ message: "err3: Você não está autorizado!" });
     }
 
     const { title, text, banner } = req.body;
