@@ -3,9 +3,10 @@ import {
   findAllService,
   countNews,
   topNewsService,
+  findByIdService
 } from "../services/news.services.js";
 
-const create = async (req, res) => {
+export const create = async (req, res) => {
   try {
     const { title, text, banner } = req.body;
 
@@ -26,7 +27,7 @@ const create = async (req, res) => {
   }
 };
 
-const findAll = async (req, res) => {
+export const findAll = async (req, res) => {
   try {
     let { limit, offset } = req.query;
 
@@ -81,7 +82,7 @@ const findAll = async (req, res) => {
   }
 };
 
-const topNews = async (req, res) => {
+export const topNews = async (req, res) => {
   try {
     const new1 = await topNewsService();
     if (!new1) {
@@ -106,4 +107,28 @@ const topNews = async (req, res) => {
   }
 };
 
-export { create, findAll, topNews };
+export const findById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const new1 = await findByIdService(id); 
+
+    res.send({
+      news: {
+        id: new1._id,
+        title: new1.title,
+        text: new1.text,
+        banner: new1.banner,
+        likes: new1.likes,
+        comments: new1.comments,
+        name: new1.user.name,
+        esername: new1.user.username,
+        userAvatar: new1.user.avatar,
+      }
+    })
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+
+
