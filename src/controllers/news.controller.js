@@ -135,7 +135,7 @@ export const searchByTitle = async (req, res) => {
     const { title } = req.query;
     const new1 = await searchByTitleService(title);
 
-    
+    console.log(title);
     console.log(new1);
 
     if (new1.length === 0) {
@@ -143,16 +143,16 @@ export const searchByTitle = async (req, res) => {
     };
 
     return res.send({
-      results: new1.map((item) => ({
-        id: item._id,
-        title: item.title,
-        text: item.text,
-        banner: item.banner,
-        likes: item.likes,
-        comments: item.comments,
-        name: item.user.name,
-        username: item.user.username,
-        userAvatar: item.user.avatar,
+      results: new1.map((Item) => ({
+        id: Item._id,
+        title: Item.title,
+        text: Item.text,
+        banner: Item.banner,
+        likes: Item.likes,
+        comments: Item.comments,
+        name: Item.user.name,
+        username: Item.user.username,
+        userAvatar: Item.user.avatar,
       })),
     });
 
