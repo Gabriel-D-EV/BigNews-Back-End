@@ -1,4 +1,4 @@
-import ex from "express";
+import express from "express";
 import connectDatabase from "./src/database/db.js";
 import dotenv from "dotenv";
 
@@ -8,11 +8,11 @@ import newsRoute from "./src/routes/news.route.js";
 
 dotenv.config();
 
-const app = ex();
+const app = express();
 const port = process.env.PORT || 3000;
 
 connectDatabase()
-app.use(ex.json());
+app.use(express.json());
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
 app.use("/news", newsRoute);

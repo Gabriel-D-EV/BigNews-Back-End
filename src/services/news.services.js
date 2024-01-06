@@ -12,12 +12,7 @@ export const topNewsService = () =>
 
 export const findByIdService = (id) => News.findById(id).populate("user");
 
-export const searchByTitleService = (title) =>
-  News.find({
-    title: { $regex: `${title || "" }`, $options: "i" },
-  })
-    .sort({ _id: -1 })
-    .populate("user");
+
 
 
 
