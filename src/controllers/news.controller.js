@@ -139,7 +139,7 @@ export const searchByTitle = async (req, res) => {
     console.log(new1);
 
     if (new1.length === 0) {
-      return res.status(400).send({ message: "Não há Notícias com esse Titúlo" });
+      return res.status(404).send({ message: "Não há Notícias com esse Titúlo" });
     };
 
     return res.send({
