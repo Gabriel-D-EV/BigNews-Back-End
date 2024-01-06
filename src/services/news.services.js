@@ -9,3 +9,7 @@ export const countNews = () => News.countDocuments();
 export const topNewsService = () => News.findOne().sort({_id: -1}).populate("user");
 
 export const findByIdService = (id) => News.findById(id).populate("user");
+
+export const searchByTitleService = (title) => News.findOne({
+    title: {$regex: `${title || "" }`, $options: "i" }
+}).sort({_id: -1}).populate("user").exec();

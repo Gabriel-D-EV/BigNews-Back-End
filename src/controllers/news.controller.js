@@ -3,7 +3,8 @@ import {
   findAllService,
   countNews,
   topNewsService,
-  findByIdService
+  findByIdService,
+  searchByTitleService,
 } from "../services/news.services.js";
 
 export const create = async (req, res) => {
@@ -45,7 +46,6 @@ export const findAll = async (req, res) => {
     const news = await findAllService(offset, limit);
     const total = await countNews();
     const currentUrl = req.baseUrl;
-    console.log(currentUrl);
 
     const next = offset + limit;
     const nextUrl =
@@ -65,7 +65,7 @@ export const findAll = async (req, res) => {
       limit,
       offset,
       total,
-      result: news.map((Item) => ({
+      results: news.map((Item) => ({
         id: Item._id,
         title: Item.title,
         text: Item.text,
@@ -73,7 +73,7 @@ export const findAll = async (req, res) => {
         likes: Item.likes,
         comments: Item.comments,
         name: Item.user.name,
-        esername: Item.user.username,
+        username: Item.user.username,
         userAvatar: Item.user.avatar,
       })),
     });
@@ -98,7 +98,7 @@ export const topNews = async (req, res) => {
         likes: new1.likes,
         comments: new1.comments,
         name: new1.user.name,
-        esername: new1.user.username,
+        username: new1.user.username,
         userAvatar: new1.user.avatar,
       },
     });
@@ -109,8 +109,8 @@ export const topNews = async (req, res) => {
 
 export const findById = async (req, res) => {
   try {
-    const { id } = req.params
-    const new1 = await findByIdService(id); 
+    const { id } = req.params;
+    const new1 = await findByIdService(id);
 
     res.send({
       news: {
@@ -121,14 +121,42 @@ export const findById = async (req, res) => {
         likes: new1.likes,
         comments: new1.comments,
         name: new1.user.name,
-        esername: new1.user.username,
+        username: new1.user.username,
         userAvatar: new1.user.avatar,
-      }
-    })
+      },
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
+export const searchByTitle = async (req, res) => {
+  try {
+    const { title } = req.query;
+    const new1 = await searchByTitleService(title);
 
+    
+    console.log(new1);
 
+    if (new1.length === 0) {
+      return res.status(400).send({ message: "Não há Notícias com esse Titúlo" });
+    };
+
+    return res.send({
+      results: new1.map((item) => ({
+        id: item._id,
+        title: item.title,
+        text: item.text,
+        banner: item.banner,
+        likes: item.likes,
+        comments: item.comments,
+        name: item.user.name,
+        username: item.user.username,
+        userAvatar: item.user.avatar,
+      })),
+    });
+
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
