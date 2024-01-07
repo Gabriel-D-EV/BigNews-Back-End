@@ -2,10 +2,10 @@ import userService from "../services/user.services.js";
 
 const create = async (req, res) => {
   try {
-    const { name, username, email, password, avatar } = req.body;
+    const { name, username, email, password, avatar } = req.body[0];
 
     if (!name || !username || !email || !password || !avatar) {
-      res.status(400).send({ message: " Preencha todos os campos." });
+      return res.status(400).send({ message: " Preencha todos os campos." });
     }
 
     const user = await userService.createService(req.body);
@@ -14,7 +14,7 @@ const create = async (req, res) => {
       return res.status(400).send({ message: "ERRO ao criar Usuario." });
     }
 
-    res.status(201).send({
+    return res.status(201).send({
       message: "Ususario criado com sucesso!",
       user: {
         id: user._id,
@@ -58,7 +58,7 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { name, username, email, password, avatar } = req.body;
+    const { name, username, email, password, avatar } = req.body[0];
 
     if (!name && !username && !email && !password && !avatar) {
       res

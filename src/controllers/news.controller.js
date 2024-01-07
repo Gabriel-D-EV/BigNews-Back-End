@@ -10,10 +10,10 @@ import {
 
 export const create = async (req, res) => {
   try {
-    const { title, text, banner } = req.body;
+    const { title, text, banner } = req.body[0];
 
     if (!title || !text || !banner) {
-      res.status(400).send({ message: " Preencha todos os campos." });
+      return res.status(400).send({ message: " Preencha todos os campos." });
     }
 
     await createService({
@@ -25,7 +25,7 @@ export const create = async (req, res) => {
 
     res.send(201);
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 
@@ -60,7 +60,7 @@ export const findAll = async (req, res) => {
       return res.status(400).send({ message: "Não há Notícias registradas!" });
     }
 
-    res.send({
+    return res.send({
       nextUrl,
       prevUrl,
       limit,
@@ -79,7 +79,7 @@ export const findAll = async (req, res) => {
       })),
     });
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 
@@ -90,7 +90,7 @@ export const topNews = async (req, res) => {
       return res.status(400).send({ message: "Não há Notícias registradas!" });
     }
 
-    res.send({
+    return res.send({
       news: {
         id: new1._id,
         title: new1.title,
@@ -104,7 +104,7 @@ export const topNews = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 
@@ -113,7 +113,7 @@ export const findById = async (req, res) => {
     const { id } = req.params;
     const new1 = await findByIdService(id);
 
-    res.send({
+    return res.send({
       news: {
         id: new1._id,
         title: new1.title,
@@ -127,7 +127,7 @@ export const findById = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 
@@ -154,7 +154,7 @@ export const searchByTitle = async (req, res) => {
       })),
     });
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    return res.status(500).send({ message: err.message });
   }
 };
 
