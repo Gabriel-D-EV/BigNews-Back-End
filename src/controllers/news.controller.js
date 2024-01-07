@@ -6,6 +6,7 @@ import {
   findByIdService,
   searchByTitleService,
   byUserService,
+  updateService,
 } from "../services/news.services.js";
 
 export const create = async (req, res) => {
@@ -161,7 +162,6 @@ export const byUser = async (req, res) => {
   try {
     const id = req.userId;
     const new1 = await byUserService(id);
-    console.log(id);
 
     return res.send({
       results: new1.map((Item) => ({
@@ -173,9 +173,39 @@ export const byUser = async (req, res) => {
         comments: Item.comments,
         name: Item.user.name,
         username: Item.user.username,
-        userAvatar: Item.user.avatar
+        userAvatar: Item.user.avatar,
       })),
     });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
+
+export const update = async (req, res) => {
+  try {
+    const { title, text, banner } = req.body;
+    const { id } = req.params;
+
+    if (!title && !text && !banner) {
+      res.status(400).send({ message: " Preencha os campos para update." });
+    }
+
+    const new1 = await findByIdService(id);
+    
+    console.log( new1.user._id, req.userId);
+
+    if (new1.user._id.toString() != req.userId.toString()) {
+      return res.status(400).send({
+        message: "Você não tem permissão para atualizar esta notícia!",
+      });
+    }
+
+    
+    
+
+    await updateService(id, title, text, banner);
+
+    return res.send({ message: "Notícia atualizada com sucesso!" });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
