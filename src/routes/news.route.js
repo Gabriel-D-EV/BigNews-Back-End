@@ -9,6 +9,7 @@ import {
   searchByTitle,
   byUser,
   update,
+  deleteNews,
 } from "../controllers/news.controller.js";
 import { authMiddlewere } from "../middlewares/auth.middlewares.js";
 
@@ -23,5 +24,6 @@ route.get("/byUser", authMiddlewere, byUser)
 
 route.patch("/:id", authMiddlewere,update);
 route.get("/:id", authMiddlewere, findById);
+route.delete("/:id", authMiddlewere, deleteNews);
 
 export default route;

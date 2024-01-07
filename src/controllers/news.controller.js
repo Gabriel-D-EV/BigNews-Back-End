@@ -7,6 +7,7 @@ import {
   searchByTitleService,
   byUserService,
   updateService,
+  deleteNewsService
 } from "../services/news.services.js";
 
 export const create = async (req, res) => {
@@ -192,7 +193,6 @@ export const update = async (req, res) => {
 
     const new1 = await findByIdService(id);
     
-    console.log( new1.user._id, req.userId);
 
     if (new1.user._id.toString() != req.userId.toString()) {
       return res.status(400).send({
@@ -210,3 +210,31 @@ export const update = async (req, res) => {
     return res.status(500).send({ message: err.message });
   }
 };
+
+export const deleteNews = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const new1 = await findByIdService(id);
+
+    console.log(new1, id);
+
+    if (new1.user._id.toString() != req.userId.toString()) {
+      return res.status(400).send({
+        message: "Você não tem permissão para apagar esta notícia!",
+      });
+    }
+
+    
+  
+
+    await deleteNewsService(id);
+
+    return res.send({ message: "Notícia apagada com sucesso!" });
+
+  } catch (error) {return res.status(500).send({ message: error.message });
+    
+  }
+};
+
+

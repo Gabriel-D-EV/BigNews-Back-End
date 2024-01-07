@@ -28,3 +28,7 @@ export const byUserService = (id) =>
 export const updateService = (id, title, text, banner) =>
   News.findOneAndUpdate({ _id: id }, { title, text, banner },
    { rawResult: true });
+
+export const deleteNewsService = (id) => News.findOneAndDelete({ _id: id });
+
+
