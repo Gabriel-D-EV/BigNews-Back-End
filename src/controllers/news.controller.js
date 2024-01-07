@@ -4,8 +4,8 @@ import {
   countNews,
   topNewsService,
   findByIdService,
-  searchByTitleService
-  
+  searchByTitleService,
+  byUserService,
 } from "../services/news.services.js";
 
 export const create = async (req, res) => {
@@ -133,19 +133,14 @@ export const findById = async (req, res) => {
 
 export const searchByTitle = async (req, res) => {
   try {
-    const { title } = req.query
+    const { title } = req.query;
     const new1 = await searchByTitleService(title);
-
-    console.log(new1);
 
     if (new1.length === 0) {
       return res.status(400).send({ message: "Não há Notícias registradas !" });
     }
 
-    
-
     return res.send({
-
       results: new1.map((Item) => ({
         id: Item._id,
         title: Item.title,
@@ -157,10 +152,32 @@ export const searchByTitle = async (req, res) => {
         username: Item.user.username,
         userAvatar: Item.user.avatar,
       })),
-
-    })
-
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-}
+};
+
+export const byUser = async (req, res) => {
+  try {
+    const id = req.userId;
+    const new1 = await byUserService(id);
+    console.log(id);
+
+    return res.send({
+      results: new1.map((Item) => ({
+        id: Item._id,
+        title: Item.title,
+        text: Item.text,
+        banner: Item.banner,
+        likes: Item.likes,
+        comments: Item.comments,
+        name: Item.user.name,
+        username: Item.user.username,
+        userAvatar: Item.user.avatar
+      })),
+    });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
+};
