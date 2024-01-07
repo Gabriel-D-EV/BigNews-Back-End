@@ -135,7 +135,6 @@ export const searchByTitle = async (req, res) => {
   try {
     const { title } = req.query;
     const new1 = await searchByTitleService(title);
-
     if (new1.length === 0) {
       return res.status(400).send({ message: "Não há Notícias registradas !" });
     }
