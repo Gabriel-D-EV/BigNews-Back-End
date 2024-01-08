@@ -11,6 +11,8 @@ import {
   update,
   deleteNews,
   like,
+  addComment,
+  delComment
 } from "../controllers/news.controller.js";
 import { authMiddlewere } from "../middlewares/auth.middlewares.js";
 
@@ -27,5 +29,6 @@ route.patch("/like/:id", authMiddlewere, like);
 route.patch("/:id", authMiddlewere,update);
 route.get("/:id", authMiddlewere, findById);
 route.delete("/:id", authMiddlewere, deleteNews);
-
+route.patch("/comment/:id", authMiddlewere, addComment);
+route.patch("/comment/:idnews/:idComment", authMiddlewere, delComment);
 export default route;

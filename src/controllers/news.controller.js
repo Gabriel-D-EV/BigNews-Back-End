@@ -10,6 +10,8 @@ import {
   deleteNewsService,
   likeService,
   dellikeService,
+  addCommentService,
+  delCommentService
 } from "../services/news.services.js";
 
 export const create = async (req, res) => {
@@ -250,3 +252,40 @@ export const like = async (req, res) => {
     return res.status(500).send({ message: error.message });
   }
 };
+
+export const addComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
+    const { comment } = req.body;
+
+    if(!comment) {res.status(404).send({ message: "Sem comentários" })};
+    res.send({ message: "Comentário feito com sucesso!" });
+
+    await addCommentService(id, userId, comment);
+
+
+  } catch (error) { return res.status(500).send({ message: error.message });}
+};
+
+export const delComment = async (req, res) => {
+  try {
+    const { idnews, idComment } = req.params;
+    const userId = req.userId;
+
+
+    const commentDel = await delCommentService(idnews, userId, idComment);
+
+
+    const commentFind = commentDel.comments.find((comment) => comment.idComment === idComment);
+
+    if(commentFind.userId.toString() !== userId.toString()) {
+      return res.status(400).send({ message: "Você não tem permissão para apagar este comentário!" });
+    }
+
+    res.send({ message: "Comentário apagado" });
+
+
+  } catch (error) { return res.status(500).send({ message: error.message });}
+};
+
