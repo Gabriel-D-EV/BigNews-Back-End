@@ -15,15 +15,7 @@ const create = async (req, res) => {
     }
 
     res.status(201).send({
-      message: "Ususario criado com sucesso!",
-      user: {
-        id: user._id,
-        name,
-        username,
-        email,
-        password,
-        avatar,
-      },
+      message: "Ususario criado com sucesso!"
     });
   } catch (err) {
     res.status(500).send({ message: err.message });
