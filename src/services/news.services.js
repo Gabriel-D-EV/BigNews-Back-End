@@ -26,9 +26,25 @@ export const byUserService = (id) =>
   News.find({ user: id }).sort({ _id: -1 }).populate("user");
 
 export const updateService = (id, title, text, banner) =>
-  News.findOneAndUpdate({ _id: id }, { title, text, banner },
-   { rawResult: true });
+  News.findOneAndUpdate(
+    { _id: id },
+    { title, text, banner },
+    { rawResult: true }
+  );
 
 export const deleteNewsService = (id) => News.findOneAndDelete({ _id: id });
 
+export const likeService = (idnews, userId) =>
+  News.findOneAndUpdate(
+    { _id: idnews, "likes.userId":{$nin: [userId]} },
+    { $push: { likes: { userId, created: new Date() } } }
+  );
 
+/*  $push = adiciona
+    $pull = remove 
+*/
+
+export const dellikeService = (idnews, userId) => News.findOneAndUpdate(
+  { _id: idnews },
+  { $pull: { likes: { userId } } }
+);

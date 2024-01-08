@@ -7,7 +7,9 @@ import {
   searchByTitleService,
   byUserService,
   updateService,
-  deleteNewsService
+  deleteNewsService,
+  likeService,
+  dellikeService,
 } from "../services/news.services.js";
 
 export const create = async (req, res) => {
@@ -192,16 +194,12 @@ export const update = async (req, res) => {
     }
 
     const new1 = await findByIdService(id);
-    
 
     if (new1.user._id.toString() != req.userId.toString()) {
       return res.status(400).send({
         message: "Você não tem permissão para atualizar esta notícia!",
       });
     }
-
-    
-    
 
     await updateService(id, title, text, banner);
 
@@ -225,16 +223,30 @@ export const deleteNews = async (req, res) => {
       });
     }
 
-    
-  
-
     await deleteNewsService(id);
 
     return res.send({ message: "Notícia apagada com sucesso!" });
-
-  } catch (error) {return res.status(500).send({ message: error.message });
-    
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
   }
 };
 
+export const like = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
 
+    const liked = await likeService(id, userId);
+
+    if(!liked) {
+      await dellikeService(id, userId);
+      return res.status(200).send({ message: "Like removido!" });
+    };
+
+
+    res.send("Like");
+
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+};
