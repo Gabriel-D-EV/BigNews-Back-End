@@ -92,7 +92,7 @@
         }
       }
     },
-    "/user/findById/{id}": {
+    "/user/{id}": {
       "get": {
         "summary": "Pesquisar usuário por ID",
         "description": "Rota responsável por buscar usuário por ID",
@@ -128,7 +128,7 @@
         }
       }
     },
-    "/user/update/{id}": {
+    "/user/{id}": {
       "patch": {
         "summary": "Atualizar usuário por id",
         "description": "Rota responsável por editar o usuário por id",
@@ -212,7 +212,7 @@
         }
       }
     },
-    "/posts/create": {
+    "/news/create": {
       "post": {
         "summary": "Crie uma nova postagem",
         "description": "Rota responsável pela criação de um novo Post",
@@ -222,10 +222,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Post"
+                "$ref": "#/components/schemas/News"
               },
               "examples": {
-                "Post": {
+                "News": {
                   "value": {
                     "user": "",
                     "banner": "https://labs.tadigital.com/wp-content/uploads/2017/07/ES6-banner.jpg",
@@ -252,7 +252,7 @@
               "application/json": {
                 "schemma": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/News"
                 }
               }
             }
@@ -260,7 +260,7 @@
         }
       }
     },
-    "/posts": {
+    "/news": {
       "get": {
         "summary": "Pesquisar todas as postagens",
         "description": "Rota responsável por buscar todos os posts",
@@ -288,7 +288,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Post"
+                    "$ref": "#/components/schemas/News"
                   }
                 }
               }
@@ -297,7 +297,7 @@
         }
       }
     },
-    "/posts/top": {
+    "/news/top": {
       "get": {
         "summary": "Pesquisar postagem principal",
         "description": "Rota responsável por buscar a postagem principal",
@@ -312,7 +312,7 @@
               "application/json": {
                 "schemma": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/News"
                 }
               }
             }
@@ -320,7 +320,7 @@
         }
       }
     },
-    "/posts/search": {
+    "/news/search": {
       "get": {
         "summary": "Pesquise postagens por título",
         "description": "Rota responsável por buscar os posts que correspondem ao título enviado via parâmetros de consulta",
@@ -344,7 +344,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Post"
+                    "$ref": "#/components/schemas/News"
                   }
                 }
               }
@@ -353,7 +353,7 @@
         }
       }
     },
-    "/posts/byIdPost/{id}": {
+    "/news/{id}": {
       "patch": {
         "summary": "Pesquisar postagem por ID",
         "description": "Rota responsável por buscar post por id",
@@ -381,7 +381,7 @@
               "application/json": {
                 "schemma": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/News"
                 }
               }
             }
@@ -389,7 +389,7 @@
         }
       }
     },
-    "/posts/byUser": {
+    "/news/byUser": {
       "get": {
         "summary": "Pesquisar postagens por ID de uso",
         "description": "Rota responsável por buscar posts por use id",
@@ -408,7 +408,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Post"
+                    "$ref": "#/components/schemas/News"
                   }
                 }
               }
@@ -417,7 +417,7 @@
         }
       }
     },
-    "/posts/upadate/{id}": {
+    "/news/{id}": {
       "patch": {
         "summary": "Atualizar uma postagem",
         "description": "Rota responsável por atualizar um Post",
@@ -436,7 +436,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Post"
+                "$ref": "#/components/schemas/News"
               },
               "examples": {
                 "Post": {
@@ -463,7 +463,7 @@
               "application/json": {
                 "schemma": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/News"
                 }
               }
             }
@@ -471,7 +471,7 @@
         }
       }
     },
-    "/posts/delete/{id}": {
+    "/news/{id}": {
       "delete": {
         "summary": "Excluir uma postagem",
         "description": "Rota responsável por excluir uma postagem",
@@ -499,7 +499,7 @@
         }
       }
     },
-    "/posts/like/{id}": {
+    "/news/like/{id}": {
       "patch": {
         "summary": "Like na postagem",
         "description": "Rota responsável por curtir uma postagem",
@@ -527,7 +527,7 @@
         }
       }
     },
-    "/posts/comment/{id}": {
+    "/news/comment/{id}": {
       "patch": {
         "summary": "Comentar uma postagem",
         "description": "Rota responsável por comentar uma postagem",
