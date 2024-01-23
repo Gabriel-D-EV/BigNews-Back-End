@@ -14,9 +14,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 connectDatabase()
-app.use(cors({
-  origin: "http://localhost:5173"
-}));
+app.use(cors());
 app.use(express.json());
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
