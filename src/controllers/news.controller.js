@@ -97,7 +97,7 @@ export const topNews = async (req, res) => {
     }
 
     res.send({
-      news: {
+      new1: {
         id: new1._id,
         title: new1.title,
         text: new1.text,
