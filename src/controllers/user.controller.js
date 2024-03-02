@@ -1,3 +1,4 @@
+import authServices from "../services/auth.services.js";
 import userService from "../services/user.services.js";
 
 const create = async (req, res) => {
@@ -14,9 +15,14 @@ const create = async (req, res) => {
       return res.status(400).send({ message: "ERRO ao criar Usuario." });
     }
 
+    const token = authServices.generateToken(user._id);
+
     res.status(201).send({
-      message: "Ususario criado com sucesso!"
+      message: "Ususario criado com sucesso!", token
     });
+
+  
+
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
