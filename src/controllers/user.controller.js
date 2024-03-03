@@ -49,6 +49,8 @@ const findById = async (req, res) => {
     const user = req.user;
 
     res.send(user);
+
+    return user, id;
   } catch {
     res.status(500).send({ message: err.message });
   }

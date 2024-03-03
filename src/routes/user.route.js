@@ -6,8 +6,10 @@ const route = Router()
 
 route.post("/signup", userController.create);
 route.get("/", userController.findAll);
-route.get("/:id", validId, validUser, userController.findById);
-route.patch("/:id", validId, validUser,  userController.update)
+
+route.use(validId, validUser)
+route.get("/findById", userController.findById);
+route.patch("/update",  userController.update)
 
 
 export default route; 
