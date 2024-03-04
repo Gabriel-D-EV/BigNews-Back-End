@@ -10,7 +10,7 @@ export const validId = (req, res, next) => {
     }
 
     (req.id = id), next();
-  } catch {
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
@@ -19,7 +19,7 @@ export const validUser = async (req, res, next) => {
   try {
     const id = req.params.id;
 
-    const user = await userService.findByIdService(id);
+    const user = await userService.findByIdUserService(id);
 
     if (!user) {
       return res.status(400).send({ message: "Não há usuarios" });
@@ -29,7 +29,7 @@ export const validUser = async (req, res, next) => {
     req.user = user;
 
     next();
-  } catch {
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };

@@ -8,8 +8,8 @@ route.post("/signup", userController.create);
 route.get("/", userController.findAll);
 
 route.use(validId, validUser)
-route.get("/findById", userController.findById);
-route.patch("/update",  userController.update)
+route.get("/userlogado", userController.findById);
+route.patch("/:id",  userController.update)
 
 
 export default route; 

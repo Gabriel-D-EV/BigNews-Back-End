@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import authServices from "../services/auth.services.js";
 import userService from "../services/user.services.js";
 
@@ -37,21 +38,16 @@ const findAll = async (req, res) => {
     }
 
     res.send(users);
-  } catch {
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
 const findById = async (req, res) => {
   try {
-    const id = req.id;
-
-    const user = req.user;
-
-    res.send(user);
-
-    return user, id;
-  } catch {
+    const user = req.user
+    res.send(user)
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
@@ -80,7 +76,7 @@ const update = async (req, res) => {
     );
 
     res.send({ message: "Usuario atualizado com sucesso!!" });
-  } catch {
+  } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
