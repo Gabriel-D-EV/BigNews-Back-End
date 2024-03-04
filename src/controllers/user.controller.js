@@ -43,15 +43,31 @@ const findAll = async (req, res) => {
   }
 };
 
-const findById = async (req, res) => {
+/*const findById = async (req, res) => {
   try {
-    const user = req.user
-    res.send(user)
+    const user = await userService.findByIdUserService(
+      req.id,
+      req.userId
+    );
+    console.log(user);
+    return res.send(user)
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    res.status(400).send({ message: err.message });
   }
 };
+*/
 
+async function findUserById(req, res) {
+  try {
+    const user = await userService.findUserByIdService(
+      req.params.id,
+      req.userId
+    );
+    return res.send(user);
+  } catch (err) {
+    return res.status(400).send(err.message);
+  }
+}
 const update = async (req, res) => {
   try {
     const { name, username, email, password, avatar } = req.body;
@@ -81,4 +97,4 @@ const update = async (req, res) => {
   }
 };
 
-export default { create, findAll, findById, update };
+export default { create, findAll, update, findUserById };

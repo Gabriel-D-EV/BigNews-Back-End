@@ -3,7 +3,8 @@ import userService from "../services/user.services.js";
 
 export const validId = (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = req.id;
+    console.log(req.id);
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).send({ message: "ID Inválido!" });
@@ -17,7 +18,7 @@ export const validId = (req, res, next) => {
 
 export const validUser = async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const id = req.id;
 
     const user = await userService.findByIdUserService(id);
 

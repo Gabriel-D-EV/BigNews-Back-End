@@ -4,7 +4,7 @@ const createService = (body) => User.create(body)
 
 const findAllService = () => User.find();
 
-const findByIdUserService = (idUser) => User.findById(idUser)
+const findByIdUserService = (id) => User.findById(id)
 
 const updateService = (
     id,

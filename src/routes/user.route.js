@@ -8,7 +8,7 @@ route.post("/signup", userController.create);
 route.get("/", userController.findAll);
 
 route.use(validId, validUser)
-route.get("/userlogado", userController.findById);
+route.get("/logado/:id?", userController.findUserById);
 route.patch("/:id",  userController.update)
 
 
