@@ -1,6 +1,8 @@
-import mongoose from "mongoose";
+
 import authServices from "../services/auth.services.js";
 import userService from "../services/user.services.js";
+import deleteUserService from "../services/user.services.js";
+import findByIdUserService from "../services/user.services.js";
 
 const create = async (req, res) => {
   try {
@@ -19,11 +21,10 @@ const create = async (req, res) => {
     const token = authServices.generateToken(user._id);
 
     res.status(201).send({
-      message: "Ususario criado com sucesso!", token
+      message: "Ususario criado com sucesso!",
     });
 
     return token;
-
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -43,29 +44,18 @@ const findAll = async (req, res) => {
   }
 };
 
-/*const findById = async (req, res) => {
+const findUserById = async (req, res) => {
   try {
-    const user = await userService.findByIdUserService(
-      req.id,
-      req.userId
-    );
+    const user = req.params.user || null;
+    if (user) {
+      return res.send(user);
+      
+    } else {
+      res.status(200).send({ message: "ok" });
+    }
     console.log(user);
-    return res.send(user)
   } catch (err) {
-    res.status(400).send({ message: err.message });
-  }
-};
-*/
-
-async function findUserById(req, res) {
-  try {
-    const user = await userService.findUserByIdService(
-      req.params.id,
-      req.userId
-    );
-    return res.send(user);
-  } catch (err) {
-    return res.status(400).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 }
 const update = async (req, res) => {
@@ -96,5 +86,6 @@ const update = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+
 
 export default { create, findAll, update, findUserById };

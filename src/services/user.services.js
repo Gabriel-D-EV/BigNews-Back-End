@@ -15,6 +15,8 @@ const updateService = (
     avatar) => User.findOneAndUpdate({_id: id},{ name, username, email, password, avatar }
     );
 
+
+
 export default  {
     createService, findAllService, findByIdUserService, updateService,
 }
