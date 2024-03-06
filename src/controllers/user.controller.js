@@ -1,8 +1,6 @@
 
 import authServices from "../services/auth.services.js";
 import userService from "../services/user.services.js";
-import deleteUserService from "../services/user.services.js";
-import findByIdUserService from "../services/user.services.js";
 
 const create = async (req, res) => {
   try {
@@ -21,10 +19,11 @@ const create = async (req, res) => {
     const token = authServices.generateToken(user._id);
 
     res.status(201).send({
-      message: "Ususario criado com sucesso!",
+      message: "Ususario criado com sucesso!", user: user, token: token
+
     });
 
-    return token;
+    return token, user ;
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

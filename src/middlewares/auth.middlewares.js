@@ -35,7 +35,7 @@ export const authMiddlewere = (req, res, next) => {
       }
       console.log(decoded);
 
-      const user = await userServices.findByIdService(decoded.id);
+      const user = await userServices.findByIdUserService(decoded.id);
 
       if (!user || !user._id) {
         return res.status(401).send({ message: "err5: Token invalido!" });
