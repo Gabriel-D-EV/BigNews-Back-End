@@ -5,7 +5,8 @@
     "description": "Nesta documentação você poderá consultar o endpoint da API e também testar todas as rotas disponíveis. Não esqueça de se cadastrar e realizar a autorização",
     "contact": {
       "email": "gabriel.silva_dev@outlook.com",
-      "whatsapp": "+55 11 95054-1990"
+      "whatsapp": "+55 11 95054-1990",
+      "redes": "https://gabrielsilvadeveloper.site/"
     },
     "version": "1.0.0"
   },
@@ -20,7 +21,7 @@
     }
   ],
   "paths": {
-    "/user/create": {
+    "/user/signup": {
       "post": {
         "summary": "Criar novo usuario",
         "description": "Rota responsável pela criação de um novo usuário",
@@ -92,7 +93,7 @@
         }
       }
     },
-    "/user/{id}/": {
+    "/user/userlogado/{id}/": {
       "get": {
         "summary": "Pesquisar usuário por ID",
         "description": "Rota responsável por buscar usuário por ID",
@@ -180,7 +181,7 @@
         }
       }
     },
-    "/auth/login": {
+    "/auth": {
       "post": {
         "summary": "Faça login no Big-News",
         "description": "Rota responsável por logar um usuário cadastrado",
@@ -216,7 +217,7 @@
       "post": {
         "summary": "Crie uma nova postagem",
         "description": "Rota responsável pela criação de um novo Post",
-        "tags": ["Post"],
+        "tags": ["News"],
         "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
@@ -264,7 +265,7 @@
       "get": {
         "summary": "Pesquisar todas as postagens",
         "description": "Rota responsável por buscar todos os posts",
-        "tags": ["Post"],
+        "tags": ["News"],
         "parameters": [
           {
             "in": "query",
@@ -301,7 +302,7 @@
       "get": {
         "summary": "Pesquisar postagem principal",
         "description": "Rota responsável por buscar a postagem principal",
-        "tags": ["Post"],
+        "tags": ["News"],
         "responses": {
           "400": {
             "description": "Not Found"
@@ -324,7 +325,7 @@
       "get": {
         "summary": "Pesquise postagens por título",
         "description": "Rota responsável por buscar os posts que correspondem ao título enviado via parâmetros de consulta",
-        "tags": ["Post"],
+        "tags": ["News"],
         "parameters": [
           {
             "in": "query",
@@ -354,10 +355,10 @@
       }
     },
     "/news/{id}/": {
-      "patch": {
+      "get": {
         "summary": "Pesquisar postagem por ID",
         "description": "Rota responsável por buscar post por id",
-        "tags": ["Post"],
+        "tags": ["News"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -393,7 +394,7 @@
       "get": {
         "summary": "Pesquisar postagens por ID de uso",
         "description": "Rota responsável por buscar posts por use id",
-        "tags": ["Post"],
+        "tags": ["News"],
         "responses": {
           "400": {
             "description": "Not Found"
@@ -417,11 +418,11 @@
         }
       }
     },
-    "/news/{id}": {
+    "/news/update/{id}": {
       "patch": {
         "summary": "Atualizar uma postagem",
         "description": "Rota responsável por atualizar um Post",
-        "tags": ["Post"],
+        "tags": ["News"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -475,7 +476,7 @@
       "delete": {
         "summary": "Excluir uma postagem",
         "description": "Rota responsável por excluir uma postagem",
-        "tags": ["Post"],
+        "tags": ["News"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -503,7 +504,7 @@
       "patch": {
         "summary": "Like na postagem",
         "description": "Rota responsável por curtir uma postagem",
-        "tags": ["Post"],
+        "tags": ["News"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -531,7 +532,7 @@
       "patch": {
         "summary": "Comentar uma postagem",
         "description": "Rota responsável por comentar uma postagem",
-        "tags": ["Post"],
+        "tags": ["News"],
         "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
@@ -598,25 +599,23 @@
           },
           "avatar": {
             "type": "string"
-          },
-          "background": {
-            "type": "string"
           }
         }
       },
       "News": {
         "type": "object",
         "properties": {
-          "user": {
+          
+          "title": {
+            "type": "string"
+          },
+          "text": {
             "type": "string"
           },
           "banner": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
-          },
-          "text": {
+          "user": {
             "type": "string"
           },
           "likes": {
