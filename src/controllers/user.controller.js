@@ -17,13 +17,14 @@ const create = async (req, res) => {
     }
 
     const token = authServices.generateToken(user._id);
+    const id = user._id
 
     res.status(201).send({
       message: "Ususario criado com sucesso!", user: user, token: token
 
     });
 
-    return token, user ;
+    return token, user, id ;
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -45,14 +46,15 @@ const findAll = async (req, res) => {
 
 const findUserById = async (req, res) => {
   try {
-    const user = req.params.user || null;
-    if (user) {
-      return res.send(user);
-      
-    } else {
-      res.status(200).send({ message: "ok" });
+    const id = req.params.id;
+
+    const user = await userService.findByIdUserService(id);
+
+    if (!user) {
+      return res.status(400).send({ message: "Não há usuarios cadastrados!" });
     }
-    console.log(user);
+    res.send(user);
+
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

@@ -19,8 +19,9 @@ const login = async (req, res) => {
     }
 
     const token = authservices.generateToken(user._id);
+    const id = user._id
 
-    return res.send({ user, token });
+    return res.send({ user, token, id });
   } catch (err) {
     res.status(500).send(err.message);
   }
