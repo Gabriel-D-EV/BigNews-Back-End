@@ -93,7 +93,7 @@
         }
       }
     },
-    "/user/userlogado/{id}/": {
+    "/user/{id}/": {
       "get": {
         "summary": "Pesquisar usuário por ID",
         "description": "Rota responsável por buscar usuário por ID",
