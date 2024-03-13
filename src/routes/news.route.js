@@ -20,7 +20,7 @@ route.post("/create", authMiddlewere, create);
 route.get("/", findAll);
 route.get("/search", searchByTitle);
 route.get("/top", topNews);
-route.get("/byUser", authMiddlewere, byUser);
+route.get("/byuser", authMiddlewere, byUser);
 
 
 
