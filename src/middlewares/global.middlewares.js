@@ -22,7 +22,7 @@ export const validUser = async (req, res, next) => {
     const user = await userServices.findByIdUserService(id)
 
     if (!user) {
-      return res.status(400).send({ message: "Não há usuarios" });
+      return res.status(400).send({ message: "Não há Usuarios" });
     }
 
     req.params.id = id;
