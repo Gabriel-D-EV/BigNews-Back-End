@@ -390,7 +390,7 @@
         }
       }
     },
-    "/news/byuser": {
+    "/news/byUser": {
       "get": {
         "summary": "Pesquisar postagens por ID de uso",
         "description": "Rota responsável por buscar posts por use id",
