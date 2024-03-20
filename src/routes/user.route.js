@@ -9,7 +9,7 @@ route.get("/", userController.findAll);
 
 
 route.get("/:id", userController.findUserById);
-route.patch("/:id", validId, validUser, userController.update)
+route.put("/:id", validId, validUser, userController.update)
 
 
 

@@ -3,13 +3,14 @@ import userServices from "../services/user.services.js";
 
 export const validId = (req, res, next) => {
   try {
-    const id = req.params._id; 
+    const id = req.params.id; 
+    console.log(id);
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).send({ message: "ID Inválido!" });
     }
     
-    return (req.params.id = id), next();
+    return (req._id = id), next();
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -17,16 +18,18 @@ export const validId = (req, res, next) => {
 
 export const validUser = async (req, res, next) => {
   try {
-    const id = req.params._id;
+    const id = req._id;
 
     const user = await userServices.findByIdUserService(id)
+
+    console.log(user, id);
 
     if (!user) {
       return res.status(400).send({ message: "Não há Usuarios" });
     }
 
-    req.params.id = id;
-    req.params.user = user;
+    req._id = id;
+    req.user = user;
 
     next();
   } catch (err) {
