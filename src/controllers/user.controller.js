@@ -20,7 +20,7 @@ const create = async (req, res) => {
     const id = user._id
 
     res.status(201).send({
-      message: "Ususario criado com sucesso!", user: user, token: token
+      message: "Ususario criado com sucesso!"
 
     });
 
@@ -61,12 +61,12 @@ const findUserById = async (req, res) => {
 }
 const update = async (req, res) => {
   try {
-    const { name, username, email, password, avatar } = req.body;
+    const { name, username, email, password, avatar } = await req.body;
 
     if (!name && !username && !email && !password && !avatar) {
       res
         .status(400)
-        .send({ message: " Preencha algum campo para atualizar." });
+        .send({ message: " Preencha algum campo para atualizar!!" });
     }
 
     const id = req.id;
@@ -82,7 +82,7 @@ const update = async (req, res) => {
       avatar
     );
 
-    res.send({ message: "Usuario atualizado com sucesso!!" });
+    res.send({ message: "Usuario atualizado com sucesso!!!" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

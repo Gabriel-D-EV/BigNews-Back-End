@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Documentação da API Big-News",
-    "description": "Nesta documentação você poderá consultar o endpoint da API e também testar todas as rotas disponíveis. Não esqueça de se cadastrar e realizar a autorização",
+    "title": "Documentação da API Big-News - Donquixote",
+    "description": "Nesta documentação você poderá consultar o Back-End da API, e também testar todas as rotas disponíveis. Não esqueça de se cadastrar e realizar a autorização",
     "contact": {
       "email": "gabriel.silva_dev@outlook.com",
       "whatsapp": "+55 11 95054-1990",
       "redes": "https://gabrielsilvadeveloper.site/"
     },
-    "version": "1.0.0"
+    "version": "0.2.1"
   },
   "servers": [
     {
@@ -129,7 +129,7 @@
         }
       }
     },
-    "/user/{id}": {
+    "/user/userUpdate/{id}": {
       "patch": {
         "summary": "Atualizar usuário por id",
         "description": "Rota responsável por editar o usuário por id",
@@ -392,8 +392,8 @@
     },
     "/news/byUser": {
       "get": {
-        "summary": "Pesquisar postagens por ID de uso",
-        "description": "Rota responsável por buscar posts por use id",
+        "summary": "Pesquisar postagens por ID de usuario",
+        "description": "Rota responsável por buscar notícias por user id",
         "tags": ["News"],
         "responses": {
           "400": {
