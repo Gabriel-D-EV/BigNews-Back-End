@@ -129,7 +129,7 @@
         }
       }
     },
-    "/user/userUpdate/{id}": {
+    "/user/{id}": {
       "patch": {
         "summary": "Atualizar usuário por id",
         "description": "Rota responsável por editar o usuário por id",

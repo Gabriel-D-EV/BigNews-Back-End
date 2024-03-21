@@ -59,7 +59,7 @@ const findUserById = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 }
-const update = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
     const { name, username, email, password, avatar } = await req.body;
 
@@ -89,4 +89,4 @@ const update = async (req, res) => {
 };
 
 
-export default { create, findAll, update, findUserById };
+export default { create, findAll, updateUser, findUserById };
