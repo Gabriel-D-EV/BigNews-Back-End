@@ -61,7 +61,7 @@ const findUserById = async (req, res) => {
 }
 const updateUser = async (req, res) => {
   try {
-    const { name, username, email, password, avatar } = await req.body;
+    const { name, username, email, password, avatar } = req.body;
 
     if (!name && !username && !email && !password && !avatar) {
       res
@@ -69,9 +69,11 @@ const updateUser = async (req, res) => {
         .send({ message: " Preencha algum campo para atualizar!!" });
     }
 
-    const id = req.id;
+    const id = req._id;
 
     const user = req.user;
+
+    console.log(user, id);
 
     await userService.updateService(
       id,
@@ -82,9 +84,9 @@ const updateUser = async (req, res) => {
       avatar
     );
 
-    res.send({ message: "Usuario atualizado com sucesso!!!" });
+    return res.send({ message: "Usuario atualizado com sucesso!!!" });
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    
   }
 };
 
