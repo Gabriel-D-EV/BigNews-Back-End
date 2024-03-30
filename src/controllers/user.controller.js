@@ -66,14 +66,14 @@ const updateUser = async (req, res) => {
     if (!name && !username && !email && !password && !avatar) {
       res
         .status(400)
-        .send({ message: " Preencha algum campo para atualizar!!" });
+        .send({ message: "Preencha algum campo para atualizar!!" });
     }
 
     const id = req._id;
 
     const user = req.user;
 
-    console.log(user, id);
+
 
     await userService.updateService(
       id,
