@@ -17,6 +17,8 @@ import {
 export const create = async (req, res) => {
   try {
     const { title, text, banner } = req.body;
+    
+
 
     if (!title || !text || !banner) {
       res.status(400).send({ message: " Preencha todos os campos." });
@@ -27,9 +29,15 @@ export const create = async (req, res) => {
       text,
       banner,
       user: req.userId,
+      
     });
 
-    res.send(201);
+    res.send({
+      id: req._id,
+      title: title,
+      text: text,
+      banner: banner,
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -205,7 +213,13 @@ export const update = async (req, res) => {
 
     await updateService(id, title, text, banner);
 
-    return res.send({ message: "Notícia atualizada com sucesso!" });
+    return res.send({
+      id: id,
+      title: title,
+      text: text,
+      banner: banner,
+      message: "Notícia atualizada com sucesso!"
+    });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
