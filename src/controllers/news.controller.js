@@ -14,6 +14,7 @@ import {
   delCommentService
 } from "../services/news.services.js";
 
+
 export const create = async (req, res) => {
   try {
     const { title, text, banner } = req.body;
