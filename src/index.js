@@ -11,7 +11,7 @@ import swaggerRoute from "./routes/swagger.route.cjs";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 connectDatabase()
 app.use(cors());
