@@ -19,7 +19,7 @@ app.use(express.json());
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
 app.use("/news", newsRoute);
-app.use("/docs", swaggerRoute);
+app.use("/", swaggerRoute);
 
 
 app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
