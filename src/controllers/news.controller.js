@@ -129,7 +129,7 @@ export const findById = async (req, res) => {
     const new1 = await findByIdService(id);
 
     res.send({
-      news: {
+      data: {
         id: new1._id,
         title: new1.title,
         text: new1.text,
