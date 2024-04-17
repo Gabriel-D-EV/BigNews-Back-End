@@ -27,7 +27,7 @@ route.get("/byUser", authMiddlewere, byUser);
 
 route.patch("/like/:id", authMiddlewere, like);
 route.patch("/update/:id", authMiddlewere,update);
-route.get("/:id", authMiddlewere, findById);
+route.get("/getNewById/:id", authMiddlewere, findById);
 route.delete("/:id", authMiddlewere, deleteNews);
 route.patch("/comment/:id", authMiddlewere, addComment);
 route.patch("/comment/:idnews/:idComment", authMiddlewere, delComment);

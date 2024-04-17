@@ -354,7 +354,7 @@
         }
       }
     },
-    "/news/{id}/": {
+    "/news/getNewById/{id}/": {
       "get": {
         "summary": "Pesquisar postagem por ID",
         "description": "Rota responsável por buscar post por id",
