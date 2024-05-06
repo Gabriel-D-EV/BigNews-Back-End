@@ -208,7 +208,7 @@ export const update = async (req, res) => {
 
     if (new1.user._id.toString() != req.userId.toString()) {
       return res.status(400).send({
-        message: "Você não tem permissão para atualizar esta notícia!",
+        message: "Você não tem permissão para atualizar este Post!",
       });
     }
 
