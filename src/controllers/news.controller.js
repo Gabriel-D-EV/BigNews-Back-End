@@ -97,19 +97,20 @@ export const findAll = async (req, res) => {
 
 export const topNews = async (req, res) => {
   try {
-    const new1 = await topNewsService();
-    if (!new1) {
+    const newstop = await topNewsService();
+    
+    if (!newstop) {
       return res.status(400).send({ message: "Não há Notícias registradas!" });
     }
 
     res.send({
       results: {
-        id: new1._id,
-        title: new1.title,
-        text: new1.text,
-        banner: new1.banner,
-        likes: new1.likes,
-        comments: new1.comments,
+        id: newstop._id,
+        title: newstop.title,
+        text: newstop.text,
+        banner: newstop.banner,
+        likes: newstop.likes,
+        comments: newstop.comments,
       },
     });
   } catch (err) {
@@ -297,4 +298,3 @@ export const delComment = async (req, res) => {
 
   } catch (error) { return res.status(500).send({ message: error.message });}
 };
-
