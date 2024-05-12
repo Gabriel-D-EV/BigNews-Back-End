@@ -88,9 +88,7 @@ export const findAll = async (req, res) => {
         banner: Item.banner,
         likes: Item.likes,
         comments: Item.comments,
-        name: Item.user.name,
         username: Item.user.username,
-        userAvatar: Item.user.avatar,
       })),
     });
   } catch (err) {
