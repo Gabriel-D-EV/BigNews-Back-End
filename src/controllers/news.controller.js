@@ -52,7 +52,7 @@ export const findAll = async (req, res) => {
     offset = Number(offset);
 
     if (!limit) {
-      limit = 16;
+      limit = 12;
     }
 
     if (!offset) {
