@@ -110,9 +110,6 @@ export const topNews = async (req, res) => {
         banner: new1.banner,
         likes: new1.likes,
         comments: new1.comments,
-        name: new1.user.name,
-        username: new1.user.username,
-        userAvatar: new1.user.avatar,
       },
     });
   } catch (err) {
